@@ -19,6 +19,7 @@ public class TaskMeeting {
 	//	long unixTime = System.currentTimeMillis() / 1000L;
 	//	System.out.println(unixTime);
 		List<Meeting> ListMeeting=new ArrayList<>();
+		int count=0;
 
 		int NRequest = Integer.parseInt(br.readLine());
 		for (int i = 0; i < NRequest; ++i)
@@ -40,9 +41,12 @@ public class TaskMeeting {
 				{
 					people[j] = tk.nextToken();
 				}
-				Meeting met= new Meeting(day,hour,minute,duration,peopleN);
+				
+				Meeting met= new Meeting(day,hour,minute,duration,peopleN,people);
+				ListMeeting.add(met); //список всех встреч	
 
-				ListMeeting.add(met); //список всех встреч			
+				System.out.println(ListMeeting.get(count++).getListPeople());
+				
 				int start = (hour * 60) + minute;
 				int end = start + duration;
 
@@ -62,13 +66,13 @@ class Meeting{
 	private int peopleN;
 	private String[] people;
 	
-	public Meeting(int day, int h, int m, int d, int pn) {
+	public Meeting(int day, int h, int m, int d, int pn, String[] name) {
 		dayYear=day;
 		hour=h;
 		minute=m;
 		duration=d;
 		peopleN=pn;
-//		people=name;
+		people=name;
 	}
 	public int getDay() {
 		return dayYear;
@@ -85,8 +89,8 @@ class Meeting{
 	public int getPeopleN() {
 		return peopleN;
 	}
-/*	public String[] getListPeople() {
+	public String[] getListPeople() {
 		return people;
-	}*/
+	}
 }
 
